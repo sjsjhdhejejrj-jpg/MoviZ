@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoviZ - Stream & Download</title>
+    <link rel="stylesheet" href="style_file.css">
+  
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body>
+
+
+    <div id="sidebar" class="sidebar">
+
+    <div class="sidebar-item" onclick="location.href='/'">
+        <span><i class="material-icons">home</i> HOME</span>
+    </div>
+
+    <div class="sidebar-category">FILTERS</div>
+
+    <!-- YEAR -->
+    <!--  <div id="yearclick" class="sidebar-item" onclick="toggleMenu('year', this)"> -->
+        <div id="yearclick" class="sidebar-item" onclick="toggleYear()">
+        <span><i class="material-icons">event</i> Released Year</span>
+        <i class="material-icons arrow-icon">keyboard_arrow_down</i>
+    </div>
+    <div id="filter-year" class="dropdown-content">
+        <div class="filter-opt" onclick="showOption('Year','2025')">2025</div>
+        <div class="filter-opt" onclick="showOption('Year','2024')">2024</div>
+        <div class="filter-opt" onclick="showOption('Year','2023')">2023</div>
+    </div>
+
+        
+    <!-- LANGUAGE -->
+        <!--  <div class="sidebar-item" onclick="toggleMenu('lang', this)"> -->
+        <div class="sidebar-item" onclick="toggleLang()">
+        <span><i class="material-icons">language</i> Language</span>
+        <i class="material-icons arrow-icon">keyboard_arrow_down</i>
+    </div>
+    <div id="filter-lang" class="dropdown-content">
+        <div class="filter-opt" onclick="showOption('Language','Hindi')">Hindi</div>
+        <div class="filter-opt" onclick="showOption('Language','English')">English</div>
+        <div class="filter-opt" onclick="showOption('Language','Dual Audio')">Dual Audio</div>
+    </div>
+
+    <!-- GENRE -->
+        <!-- <div class="sidebar-item" onclick="toggleMenu('genre', this)"> -->
+        <div class="sidebar-item" onclick="toggleGenre()">
+        <span><i class="material-icons">theater_comedy</i> Genres</span>
+        <i class="material-icons arrow-icon">keyboard_arrow_down</i>
+    </div>
+    <div id="filter-genre" class="dropdown-content">
+        <div class="filter-opt" onclick="showOption('Genre','Action')">Action</div>
+        <div class="filter-opt" onclick="showOption('Genre','Drama')">Drama</div>
+        <div class="filter-opt" onclick="showOption('Genre','Horror')">Horror</div>
+    </div>
+ <!-- 
+    <hr style="border:0.5px solid #111; margin:10px 0;">
+       SIZE -->
+
+
+<!-- QUALITY -->
+<!-- QUALITY -->
+<!-- QUALITY -->
+<div class="sidebar-item" onclick="toggleQuality()">
+    <span><i class="material-icons">high_quality</i> Quality</span>
+    <i class="material-icons arrow-icon">keyboard_arrow_down</i>
+</div>
+<div id="filter-quality" class="dropdown-content">
+    <!-- Manually add kiye huye options agar chahen, JS check kar lega duplicate na ho -->
+    <div class="filter-opt">HD</div>
+    <div class="filter-opt">Full HD</div>
+    <div class="filter-opt">4K</div>
+</div>
+        <!--
+    <div class="sidebar-item" onclick="showOption('Type','Movie')">
+        <span><i class="material-icons">movie</i> MOVIES</span>
+    </div>
+-->
+</div>
+
+<div id="overlay" onclick="closeSidebar()"></div>
+<div id="ui-result"
+     style="display:none; padding:50px; text-align:center;
+            font-size:22px; color:#82e03f;">
+</div>
+
+<header>
+    <nav class="menu-btn" onclick="toggleMenu()">
+        <span>☰</span>
+        <span>HINDI</span>
+    </nav>
+    <div class="logo">
+        <h1>MoviZ</h1>
+        <p>WWW.ANIMFLIXAPP.BLOGSPOT.COM</p>
+    </div>
+
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search movies, series..." required>
+        <button type="button" id="searchBtn" onclick="searchMovies()">🔍</button>
+    </div>
+</header>
+
+ <section class="categories">
+    <a href="javascript:void(0)" class="category-btn" onclick="filterCategory('Bollywood')">Bollywood</a>
+    <a href="javascript:void(0)" class="category-btn" onclick="filterCategory('Hollywood')">Hollywood</a>
+    <a href="javascript:void(0)" class="category-btn" onclick="filterCategory('Tollywood')">Tollywood</a>
+    <a href="javascript:void(0)" class="category-btn" onclick="filterCategory('Web Series')">Web Series</a>
+    <a href="javascript:void(0)" class="category-btn" onclick="filterCategory('K-Drama')">K-Drama</a>
+    <a href="javascript:void(0)" class="category-btn" onclick="filterCategory('Anime')">Anime</a>
+    <a href="javascript:void(0)" class="category-btn" onclick="filterCategory('18+ Movies')">18+ Movies</a>
+</section>
+
+
+<main class="movie-grid" id="movie-display-container">
+    <div class="status-msg">Loading Movies...</div>
+</main>
+
+    <div id="movie-container" class="movie-grid"></div>
+
+<div id="pagination-container" class="pagination-container"></div>
+   
+<footer class="site-footer">
+    <div class="footer-content">
+        <div class="footer-info">
+            <h3>MoviZ</h3>
+            <p>Download your favorite Movies, Series, and Anime in high quality with high speed links.</p>
+        </div>
+        
+        <div class="footer-links-grid">
+            <div class="footer-section">
+                <h4>Pages</h4>
+                <a href="/p/dmca.html">DMCA</a>
+                <a href="/p/request.html">Request Movie</a>
+                <a href="/p/contact.html">Contact Us</a>
+            </div>
+            <div class="footer-section">
+                <h4>Privacy</h4>
+                <a href="/p/privacy-policy.html">Privacy Policy</a>
+                <a href="/p/terms.html">Terms of Service</a>
+                <a href="/p/about.html">About Us</a>
+            </div>
+        </div>
+    </div>
+    <div id="modalOverlay" class="modal-overlay" onclick="closePostModal()"></div>
+
+<div id="postModal" class="post-modal">
+    <div class="modal-header">
+        <span class="close-btn" onclick="closePostModal()">&times;</span>
+    </div>
+    
+    <div id="modalBody" class="modal-body">
+        </div>
+</div>
+
+    <div class="footer-bottom">
+        <p>MoviZ Copyright © 2026 - All Rights Reserved</p>
+    </div>
+</footer>
+
+<script src="javascript_file.js"></script>
+
+
+</body>
+</html>
